@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="Organizer.UI.Views.AccountControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Organizer.UI.Views" xmlns:viewmodels="clr-namespace:Organizer.UI.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:DataViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DataGrid ItemsSource="{Binding Accounts}" AutoGenerateColumns="False" 
+                  CanUserAddRows="True" CanUserDeleteRows="True" IsReadOnly="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Account Name" Binding="{Binding AccountName}" Width="*" />
+
+                <DataGridTextColumn Header="Currency" Binding="{Binding Currency}" Width="*" />
+
+                <DataGridTextColumn Header="Balance" Binding="{Binding Balance}" Width="*" />
+
+                
+                <DataGridTemplateColumn Header="View Invoices">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="View Invoices" Command="{Binding DataContext.NavigateToInvoicesCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding }" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
